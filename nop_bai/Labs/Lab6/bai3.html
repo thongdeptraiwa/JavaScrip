@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab6 bai3</title>
+</head>
+<style>
+    .main{
+        text-align: center;
+    }
+    #anh1,#anh2{
+        width: 200px;
+        height: 200px;
+    }
+</style>
+<body onload="load_img()">
+
+    <div id="header">
+        <button onclick="quayVe()">Quay về</button>
+    </div>
+    <div class="main">
+        <div>
+            <img src="../../ASM/image/airpodsmax.png" id="anh1" alt="" onmousemove="on()" onmouseout="off()">
+        </div> 
+        <div>
+            <img src="../../img/anh0.png" id="anh2" alt="" >
+        </div> 
+        <div>
+            <h3 id="index">1/5</h3>
+            <button onclick="lui_cuoi()"> |<< </button>
+            <button onclick="lui_1()"> < </button>
+            <button id="tien" onclick="tien_1()"> > </button>
+            <button onclick="tien_cuoi()"> >>| </button>
+        </div>
+    </div>
+
+    <script>
+        function on(){
+         document.getElementById("anh1").src = "../../ASM/image/airpods3.png";
+        }
+        function off(){
+            document.getElementById("anh1").src = "../../ASM/image/airpodsmax.png";
+        }
+        function quayVe(){
+            history.back();
+        }
+        //slide
+        var anh2 = [];
+        var index = 0;
+        function load_img(){
+            for(let i=0; i < 5; i++){
+                anh2[i] = new Image();
+                anh2[i].src = "../../img/anh"+i+".png";
+            }
+        }
+        function lui_cuoi(){
+            index=0;
+            document.querySelector("#anh2").src = anh2[index].src;
+            load_index();
+        }
+        function tien_cuoi(){
+            index=anh2.length - 1;
+            document.querySelector("#anh2").src = anh2[index].src;
+            load_index();
+        }
+        function lui_1(){
+            if(index > 0){
+                index--;
+            }
+            document.querySelector("#anh2").src = anh2[index].src;
+            load_index();
+        }
+        function tien_1(){
+            if(index < anh2.length -1){
+                index++;
+            }
+            document.querySelector("#anh2").src = anh2[index].src;
+            load_index();
+        }
+        function load_index(){
+            document.querySelector("#index").innerHTML = (index+1)+"/"+anh2.length;
+        }
+        
+    </script>
+</body>
+</html>

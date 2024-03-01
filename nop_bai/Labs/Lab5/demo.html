@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab5 demo</title>
+</head>
+<style>
+</style>
+<body>
+    <div id="header">
+        <button onclick="quayVe()">Quay về</button>
+    </div>
+
+    <div class="main">
+        <label>Động vật     Ten:</label>
+        <p>Tên</p>
+        <input type="text" id="ten">
+        <p>Tuổi</p>
+        <input type="text" id="tuoi">
+        <p>Màu</p>
+        <input type="text" id="mau">
+        <p>Giống</p>
+        <input type="text" id="giong">
+    <button onclick="display()">nhập</button>
+    <hr/>
+    <table id="kq" border="1">
+
+    </table>
+        
+    </div>
+    
+    <script>
+        var arr=[];
+        var kq=" ";
+        kq += "<tr>";
+        kq += `<td> Tên  </td>`;
+        kq += `<td> Tuổi </td>`;
+        kq += `<td> Màu  </td>`;
+        kq += `<td> Giống  </td>`;
+        kq  += "</tr>";
+        function dong_vat(ten,tuoi,mau,giong){
+            this.ten=ten;
+            this.tuoi=tuoi;
+            this.mau=mau;
+            this.giong=giong;
+        };
+        
+        function display(){
+            var ten = document.querySelector("#ten").value;
+            var tuoi = document.querySelector("#tuoi").value;
+            var mau = document.querySelector("#mau").value;
+            var giong = document.querySelector("#giong").value;
+
+            arr.push(new dong_vat(ten,tuoi,mau,giong));
+
+            
+            
+                for(let i=0; i< arr.length;i++){
+                    kq += "<tr>";
+
+                    kq += `<td> ${arr[i].ten}  </td>`;
+                    kq += `<td> ${arr[i].tuoi}  </td>`;
+                    kq += `<td> ${arr[i].mau}  </td>`;
+                    kq += `<td> ${arr[i].giong}  </td>`;
+
+                    kq  += "</tr>";
+                    document.querySelector("#kq").innerHTML = kq;
+                }
+            arr=[];
+
+        }
+        function quayVe(){
+            history.back();
+        }
+    </script>
+</body>
+</html>

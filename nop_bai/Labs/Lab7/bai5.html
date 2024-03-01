@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab7 bai5</title>
+</head>
+<style>
+    .submit {
+        margin-top: 0.5rem;
+    }
+    .main{
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="head">
+        <button onclick="quayVe()">Quay về</button>
+    </div>
+    <div class="main">
+        <h1>Đặt hàng</h1>
+        <form action="" method="post" id="myForm">
+
+            <div class="input">Sản Phẩm
+                <input type="text" name="" id="" class="product">
+            </div>
+            <div class="input">Loại
+                <select name="" id="select">
+                    <option value="" >Chọn</option>
+                    <option value="1">Loại 1</option>
+                    <option value="2">Loại 2</option>
+                    <option value="3">Loại 3</option>
+                </select>
+            </div>
+            <div class="input">Đơn giá
+                <input type="number" name="" id="" value="1" class="price">
+            </div>
+            <div class="input">Nơi nhận hàng
+                <input type="radio" name="diachi" checked id="noithanh">Nội thành
+                <input type="radio" name="diachi" id="ngoaithanh">Ngoại thành
+            </div>
+            <div style="display: none;" class="input" id="ship">
+                <label for="">Phí vận chuyển: </label>
+                <input type="number" name="" value="100000" id="" disabled>
+            </div>
+            <hr>
+            <button class="submit">Đặt mua</button>
+        </form>
+
+        <ul class="error"></ul>
+    </div>
+    
+
+    <script>
+        function quayVe(){
+            history.back();
+        }
+
+        var product = document.querySelector('.product');
+        var error = document.querySelector('.error');
+        var select = document.querySelector('#select');
+        var price = document.querySelector('.price')
+        var noiThanh = document.getElementById('noithanh')
+        var ngoaiThanh = document.getElementById('ngoaithanh');
+        var ship = document.getElementById('ship');
+
+        console.log(ship);
+        console.log(select);
+        let check = false
+        let check1 = false;
+        let check2 = false;
+        console.log(error);
+        // console.log(product);
+        var li = '';
+        var li1 = '';
+        var li2 = '';
+        var ul = document.querySelector('.error');
+        noiThanh.addEventListener('click', () => {
+            ship.style.display = 'none'
+        })
+
+        ngoaiThanh.addEventListener('click', () => {
+            ship.style.display = 'block'
+        })
+
+        price.addEventListener('input', (e) => {
+            // console.log(e);
+            // console.log(e.target.value);
+            if (isNaN(e.target.value) || parseFloat(e.target.value) <= 0 || e.target.value == '') {
+                price.value = 1
+            }
+
+        })
+
+        let submitElement = document.querySelector('.submit');
+        console.log(submitElement);
+        submitElement.addEventListener('click', (e) => {
+            handle(event);
+        })
+        function handle(event) {
+            event.preventDefault()
+            if (product.value == '') {
+                if (!check) {
+                    li += '<li>Vui long nhap SanPham</li>'
+                    error.innerHTML += li
+                    check = true
+                }
+            } else {
+
+                ul.children[0].remove()
+            }
+
+            if (select.value.length == 0) {
+                if (!check1) {
+                    li1 += '<li>Vui long chon Loai</li>'
+                    error.innerHTML += li1
+                    check1 = true
+                }
+            } else {
+                ul.children[1].remove()
+            }
+
+        }
+    </script>
+</body>
+
+</html>

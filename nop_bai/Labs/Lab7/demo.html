@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab7 demo</title>
+</head>
+<style>
+    .main{
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+    .item{
+        width: 300px;
+        height: 100px;
+        margin: 30px auto;
+        padding: 10px;
+        text-align: center;
+    }
+    .item img{
+        height: 100%;
+    }
+    .mockup{
+        width: 500px;
+        height: 600px;
+        background-image: url(../../img/person.png);
+        background-size: 100%;
+        background-repeat: no-repeat;
+        margin-top: 30px;
+        filter: drop-shadow(0 0 40px #121212);
+        position: relative;
+    }
+    .graphic{
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translate(-50%);   
+        transition: 0.3s;
+    }
+    .graphic.drag{
+        border: 5px dotted #232020;
+    }
+    .graphic img{
+        width: 100%;
+    }
+
+</style>
+<body>
+    <div class="head">
+        <button onclick="quayVe()">Quay về</button>
+    </div>
+    <div class="main">
+        <div class="left">
+            <div class="item">
+                <img src="../../img/non1.png" alt="" ondragstart="drag(event)">
+            </div>
+            <div class="item">
+                <img src="../../img/non2.png" alt="" ondragstart="drag(event)">
+            </div>
+            <div class="item">
+                <img src="../../img/non3.png" alt="" ondragstart="drag(event)">
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="mockup">
+                <div class="graphic" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function quayVe(){
+            history.back();
+        }
+        let itemSrc = null;
+        //kéo
+        function drag(event){
+            //lấy src img đc target
+            itemSrc = event.target.src;
+            //console.log(itemSrc);
+            //thêm 1 class drag
+            document.querySelector(".graphic").classList.add("drag");
+        }
+        //đc thả xuống
+        function drop(event){
+            //tạo 1 img
+            var img = document.createElement("img");
+            img.src = itemSrc;
+            //xóa img cũ
+            document.querySelector(".graphic").innerHTML = "";
+            //tạo 1 element mới ở graphic
+            document.querySelector(".graphic").appendChild(img);
+            //xóa 1 class(drag) trong graphic 
+            document.querySelector(".graphic").classList.remove("drag");
+        }
+        //khi vừa thả chuột ra
+        function allowDrop(event){
+            //vô hiệu hóa mặc định  cuatr hệ thống
+            event.preventDefault();
+        }
+    </script>
+</body>
+</html>

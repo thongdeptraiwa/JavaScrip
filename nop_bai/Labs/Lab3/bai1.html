@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab3 bai1</title>
+    <script src="bai1.js"></script>
+</head>
+<style>
+    .main {
+        text-align: center;
+    }
+    .input{
+        display: inline-block;
+       
+    }
+    .main button {
+        height: 50px;
+        width: 150px;
+        font-size: 20px;
+        margin-top: 10px;
+    }
+    .img img{
+        height: 500px;
+        width: 200px;
+    }
+    h2 {
+        background-color: aqua;
+        width: 600px;
+        margin: 10px auto;
+        padding: 10px 0;
+        border-radius: 5px;
+        font-size: 25px;
+    }
+</style>
+<body>
+    <div id="header">
+        <button onclick="quayVe()">Quay về</button>
+    </div>
+    <div class="main">
+        <div class="input">
+            <p>Nhập toán hạng a</p>
+            <input type="text" id="a">
+        </div>
+        <div class="input">
+            <p>Nhập toán hạng b</p>
+            <input type="text" id="b">
+        </div>
+        <div class="input">
+            <p>Nhập toán tử </p>
+            <input type="text" id="o">
+        </div>
+        
+        <div class="btn">
+            <button onclick="xemkq()">
+                Xem kết quả
+            </button>
+        </div>
+        
+        <h2 id="kq">Chưa nhập</h2>
+    </div>
+    
+</body>
+</html>

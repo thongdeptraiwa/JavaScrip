@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab6 bai1</title>
+</head>
+<style>
+    .main{
+        text-align: center;
+    }
+    .active{
+        display: block !important;
+    }
+    .myText{
+        display: none;
+    }
+    .title{
+        font-size: 1.5em;
+        background-color: #ddd;
+    }
+</style>
+<body>
+    
+    <div id="header">
+        <button onclick="quayVe()">Quay về</button>
+    </div>
+    <div class="main">
+        <div class="container">
+            <div class="title">Title #1</div>
+            <div class="myText">Just some text #1</div>
+            <div class="title">Title #2</div>
+            <div class="myText">Just some text #2</div>
+            <div class="title">Title #3</div>
+            <div class="myText">Just some text #3</div>
+        </div>
+    </div>
+    <script>
+        const menus = document.querySelectorAll(".title");
+        const openText = document.querySelectorAll(".myText");
+        // menus.forEach((el) =>{
+        //     el.addEventListener("click",(e)=>{
+        //         console.log(el.nextElementSibling);
+        //         remover();
+        //         el.nextElementSibling.classList.toggle("active");
+        //     })
+        // }); 
+        for (let i = 0; i < menus.length; i++) {
+        menus[i].addEventListener('click', () => {
+            menus[i].nextElementSibling.classList.toggle('myText')
+            
+        })
+        };
+        // function remover(){
+        //     openText.forEach((ele)=>{
+        //         ele.classList.remove("active");
+        //     });
+        // };    
+       
+        function quayVe(){
+            history.back();
+        }
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>

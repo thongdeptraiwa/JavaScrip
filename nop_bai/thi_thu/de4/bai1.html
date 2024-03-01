@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>b1 de4</title>
+</head>
+<style>
+    .main{
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="head">
+        <button onclick="quayVe()">Quay về</button>
+    </div>
+    <div class="main">
+        <img src="../../ASM/image/airpodsmax.png" id="anh" alt="" onmousemove="on()" onmouseout="off()">
+        
+    </div> 
+    
+    <script>
+        function on(){
+         document.getElementById("anh").src = "../../ASM/image/airpods3.png";
+        }
+        function off(){
+            document.getElementById("anh").src = "../../ASM/image/airpodsmax.png";
+        }
+        function quayVe(){
+            history.back();
+        }
+    </script>
+</body>
+</html>

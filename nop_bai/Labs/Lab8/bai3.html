@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab8 bai3</title>
+</head>
+<style>
+    .main{
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="head">
+        <button onclick="quayVe()">Quay về</button>
+    </div>
+    <div class="main">
+        <h1>Custom HTML5 Video PLayer</h1>
+        <video width="640" height="360" id="myPlayer" controls>
+            <source src="../../video/VideoGameChungKet.mp4" type="">
+        </video>
+
+        <div id="controls">
+            <button onclick=playPause()>Play/Pause</button>
+            <button onclick=stop()>Stop</button>
+            <button onclick=replay()>Replay</button>
+            <button onclick=increaseVolume()>Volume++</button>
+            <button onclick=decreaseVolume()>Volume--</button>
+            <button onclick=MuteVolume()>Muted/Unmuted</button>
+        </div>
+    </div>
+
+    <script>
+
+        var playerBtn = document.getElementById('myPlayer');
+        function playPause() {
+            
+           playerBtn.paused ? playerBtn.play() : playerBtn.pause()
+        }
+
+        function stop() {
+            playerBtn.pause();
+            // currentTime dùng để truy xuất thời gian hiện tại của video, khác 0 thì sẽ thực thi
+            if(playerBtn.currentTime) {
+                playerBtn.currentTime = 0
+            }
+        }
+
+        function replay() {
+            playerBtn.currentTime = 0;
+            playerBtn.play();
+        }
+
+        function increaseVolume() {
+            console.log(playerBtn.volume);
+            if (playerBtn.volume < 1) {
+                playerBtn.volume = (playerBtn.volume + 0.1).toFixed(1)
+            }
+        }
+
+        function decreaseVolume() {
+            console.log(playerBtn.volume);
+            if (playerBtn.volume > 0) {
+                playerBtn.volume = (playerBtn.volume - 0.1).toFixed(1)
+            } else {
+                playerBtn.volume = 0
+            }
+        }
+
+        function MuteVolume() {
+            playerBtn.muted ? playerBtn.muted = false : playerBtn.muted = true;
+        }
+
+        function quayVe(){
+            history.back();
+        }
+    </script>
+</body>
+</html>

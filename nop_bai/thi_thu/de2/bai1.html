@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>De2 bai1</title>
+</head>
+<style>
+    body{
+        background-image: linear-gradient(to right,rgba(23, 37, 235, 0.803), rgba(152, 69, 247, 0.868));
+    }
+    .khung{
+        text-align: center;
+        border: 1px solid #070707;
+    }
+    #tbl{
+        display: inline-block;
+        text-align: center;
+        margin-left: 43%;
+        border: 1px solid #070707;
+    }
+    #btn_themgiohang{
+        background-color: #070707;
+        color: aliceblue;
+        width: 200px;
+    }
+    #img{
+        width: 200px;
+        height: 120px;
+    }
+</style>
+<body>
+    <div class="head">
+        <button onclick="quayVe()">Quay về</button>
+    </div>
+    <div class="main">
+        <div class="khung">
+            Hình:
+            <br>
+            <input multiple type="file" name="" id="" onchange="uploadFile(this.files)" />
+            <div class="error"></div>
+            <br>
+            Tên SP:
+            <br>
+            <input type="text" id="ten" name="ten"/>
+            <br>
+            Giá:
+            <br>
+            <input type="text" id="gia" name="gia"/>
+            <br>
+            <button onclick="them()">Thêm</button>
+        </div>
+
+        <br>
+        <br>
+
+        <div id="tbl">
+            
+        </div>
+
+    </div>
+
+    <script>
+        let error = document.querySelector('.error');
+        let img = new Image();
+        function uploadFile(data) {
+            for (let i = 0; i < data.length; i++) {
+                
+                error.innerHTML += data[i].name + '<br>'
+                img.src = URL.createObjectURL(data[i]);
+                console.log(img.src);
+            }
+            
+        }
+        function them(){
+            let ten = document.querySelector("#ten").value;
+            let gia = document.querySelector("#gia").value;
+            
+            let kq = `<img id="img" src="${img.src}" alt="" with="50px" height="50px">
+                        <br>
+                        ${ten}
+                        <br>
+                        1
+                        <br>
+                        ${gia}
+                        <br>
+                        <button onclick="" id="btn_themgiohang">Thêm vào giỏ hàng</button>`;
+
+            document.querySelector("#tbl").innerHTML = kq;
+            
+        }
+        function quayVe(){
+            history.back();
+        }
+        
+        
+    </script>
+</body>
+</html>

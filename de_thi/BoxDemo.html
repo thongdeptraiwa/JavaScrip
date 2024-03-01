@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{margin: 0 auto;}
+    #aside{
+        width: 100%; clear: both;
+    }
+    .column{
+        width: 25%;
+        float:left;
+    }
+    .column .box{
+        width: 98%; margin: 10px; padding: 10px 0 10px 0;
+        box-shadow: 0 0 5px gray;
+        text-align: center;
+    }
+    .box img{
+        width: 90%;
+    }
+    .cart{
+        color:red; font-size: 30px;
+        float: right;
+        margin-right: 30px;
+    }
+    
+</style>
+<body>
+<div class="cart">0</div>
+<div class="shopCart">
+
+</div>
+<div id="aside">
+   <!-- Dữ liệu hiển thị ở đây -->
+</div>
+</body>
+</html>
+<script>
+    const data = [
+        {id: "sp1", hinh:"https://picsum.photos/150/200",
+        gia: 200, mota: "1111111111"},
+        {id: "sp2", hinh:"https://picsum.photos/150/200",
+        gia: 200, mota: "22222222"},
+        {id: "sp3", hinh:"https://picsum.photos/150/200",
+        gia: 200, mota: "333333333"},
+        {id: "sp4", hinh:"https://picsum.photos/150/200",
+        gia: 200, mota: "4444444"},
+        {id: "sp5", hinh:"https://picsum.photos/150/200",
+        gia: 200, mota: "55555555"}
+    ];
+
+    const arrCart = []; //mã, giá, soluong
+    let total = 0;
+
+
+
+    let str = "";
+    data.forEach(el => {
+        str +=  `
+            <div class="column">
+                <div class="box">
+                    <img src="${el.hinh}" alt="">
+                    <p>${el.mota}</p>
+                    <p class="gia">${el.gia}</p>
+                    <button onclick="addCart('${el.id}','${el.gia}');">Add card</button> 
+                </div>
+            </div>
+            `
+    });
+   
+    document.getElementById("aside").innerHTML = str;
+
+    function addCart(id, gia){
+        let item = {};
+        item.id = id; item.gia = gia; item.soluong = 1;
+        if(arrCart.length == 0){
+            arrCart.push(item);
+        }else{
+            let idx = -1;
+            for (let i = 0; i < arrCart.length; i++) {
+                if(arrCart[i].id == id){
+                    idx = i;
+                    break;
+                }
+            }
+            if(idx < 0){
+                arrCart.push(item);
+            }else{
+                arrCart[idx].soluong ++;
+            }
+        }
+        total++;
+        document.querySelector(".cart").innerHTML =total;
+        loadCart();
+        console.log(arrCart);
+        localStorage.clear();
+        localStorage.setItem('giohang', JSON.stringify(arrCart));
+    }
+    function loadCart(){
+        let str = "<ul>"
+        arrCart.forEach(item => {
+            str += `<li> ${item.id} - ${item.soluong} </li>`;
+        });
+        str += "</ul>";
+        document.querySelector(".shopCart").innerHTML = str;
+        document.querySelector(".cart").innerHTML = total;
+    }
+
+
+</script>

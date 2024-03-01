@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab8 bai1</title>
+</head>
+<style>
+    .main{
+        text-align: center;
+    }
+    #tbl{
+        margin-left: 43%;
+    }
+</style>
+<body>
+    <div class="head">
+        <button onclick="quayVe()">Quay về</button>
+    </div>
+    <div class="main">
+        <input type="text" id="ten" name="ten" placeholder="Tên" />
+        <input type="text" id="gia" name="gia" placeholder="Gia" />
+        <input multiple type="file" name="" id="" onchange="uploadFile(this.files)" />
+        <div class="error"></div>
+        <br>
+        <button onclick="them()">Thêm</button>
+
+        <br>
+        <div>
+            <p>Giờ vàng giá sốt (14:00 - 16:00)</p>
+            <!-- <input type="date" name="endDate"> -->
+            <div class="clock"> 
+               Bắt đầu sau :
+                <span class="hours">00</span>:
+                <span class="minutes">00</span>: 
+                <span class="seconds">00</span>
+            </div>
+        </div>
+
+        <br>
+        <img link="http://127.0.0.1:5500/Labs/Lab8/anh1.png%3Cbr%3E" alt="">
+        <table border="1" id="tbl">
+            
+        </table>
+    </div>
+
+    <script>
+        let error = document.querySelector('.error');
+        let img = new Image();
+        function uploadFile(data) {
+            for (let i = 0; i < data.length; i++) {
+                
+                error.innerHTML += data[i].name + '<br>'
+                img.src = URL.createObjectURL(data[i]);
+                console.log(img.src);
+            }
+            
+        }
+        function them(){
+            let ten = document.querySelector("#ten").value;
+            let gia = document.querySelector("#gia").value;
+            
+            let kq = `<tr>
+                        <td>Ten</td>
+                        <td>Gia</td>
+                        <td>Ảnh</td>
+                    </tr>
+                    <tr>
+                        <td>${ten}</td>
+                        <td>${gia}</td>
+                        <td><img id="img" src="${img.src}" alt="" with="50px" height="50px"></td>
+                    </tr>`;
+
+            document.querySelector("#tbl").innerHTML = kq;
+            
+        }
+        function quayVe(){
+            history.back();
+        }
+
+        const endDate = document.querySelector("input[name='endDate']");
+        const clock = document.querySelector(".clock");
+        let timeIntterval;
+        let timeStop = true;
+        //const savedValue = localStorage.getItem("countdown") || false;
+
+
+        //clearInterval(timeIntterval);
+        const temp = new Date();
+        console.log(temp.getHours());
+        //localStorage.setItem("countdown", temp);
+        startClock(temp.getHours());
+        //timeStop = true;
+
+
+        //startClock(savedValue);
+        // if(savedValue){
+        //     startClock(savedValue);
+        //     let inputValue = new Date(savedValue);
+        //     endDate.valueAsDate = inputValue;
+        // }
+        
+        // endDate.addEventListener("change", function (e){
+        //     e.preventDefault;
+        //     clearInterval(timeIntterval);
+        //     const temp = new Date(endDate.value);
+        //     localStorage.setItem("countdown", temp);
+        //     startClock(temp);
+        //     timeStop = true;
+        // });
+
+        function timeLeft(d){
+            let currentDate = new Date();         
+            //let now = (currentDate.getHours()*10000)+(currentDate.getMinutes()*100)+(currentDate.getSeconds());
+            // console.log(now);
+            
+            // 14h đổi thành s
+            let gioVang = 14*60*60;
+            let gio = currentDate.getHours()*60*60;
+            let phut = currentDate.getMinutes()*60;
+            let giay = currentDate.getSeconds();
+            let now = gio+phut+giay;
+            //console.log(now);
+
+            //từ 14h - 16h = 00h00m000
+            // if(now >= 50400 && now <=57600){
+            //     let hours = 00;
+            //     let minutes = 00;
+            //     let seconds = 00;
+            //     let days = 00;
+
+            // }else{
+                let t = gioVang - now;
+                console.log(t);
+
+                let hours = Math.floor(t/60/60);
+                let minutes = Math.floor((t-(hours*60*60))/60);
+                let seconds = Math.floor((t-(hours*60*60)-(minutes*60)));
+                let days = 00;
+            //}
+
+            return{
+                "total": t,
+                "days": days,
+                "hours": hours,
+                "minutes": minutes,
+                "seconds": seconds
+            };
+        }
+
+        function startClock(d){
+            function updateCounter(){
+                let tl = (timeLeft(d));
+                if(tl.total <= 0){
+                    timeStop = false;
+                }
+                for(let pro in tl){
+                    let el = clock.querySelector("."+pro);
+                    if(el){
+                        if(tl[pro]<10){
+                            el.innerHTML = "0"+tl[pro];
+                        }else{
+                            el.innerHTML = tl[pro];
+                        }
+                       
+                    }
+                }
+            }
+            updateCounter();
+            timeIntterval = setInterval(updateCounter,1000);
+            // if(timeStop){
+            //     timeIntterval = setInterval(updateCounter,1000);
+            // }else{
+            //     clearInterval(timeIntterval);
+            // }
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab7 bai2</title>
+</head>
+<style>
+
+    .box {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        margin-top: 2rem;
+        background-color: rgb(255, 17, 0);
+    }
+</style>
+<body>
+    <div class="head">
+        <button onclick="quayVe()">Quay về</button>
+    </div>
+    <div class="main">
+        <button class="right">Go Right</button>
+        <div class="box"></div>
+    </div>
+
+    <script>
+        let rightBtn = document.querySelector('.right');
+        let boxElement = document.querySelector('.box');
+        var x = 0;
+        rightBtn.addEventListener('click', () => {
+            setInterval(() => {
+                if (x == 1400) {
+                    clearInterval();
+                } else {
+                    x += 1;
+                    boxElement.style.left = `${x + 'px'}`;
+                }
+            })
+        });
+        function quayVe(){
+            history.back();
+        }
+    </script>
+</body>
+
+</html>

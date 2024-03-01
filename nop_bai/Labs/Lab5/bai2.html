@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab5 bai2</title>
+</head>
+<style>
+    .main {
+        text-align: center;
+    }
+    .tb{
+        margin-left: 43%;
+    }
+</style>
+<body>
+    <div id="header">
+        <button onclick="quayVe()">Quay về</button>
+    </div>
+    <div class="main">
+        <h3>Danh Mục hàng hóa</h3>
+        <table border="1" class="tb">
+            <tr>
+                <td> <img src="../../ASM/image/ip11_den1.webp" alt="" width="40px" height="40px"> iphone9</td>
+                <td>$2700</td>
+                <td>
+                    <button onclick="them(this)">Thêm</button>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="../../ASM/image/ip11_trang1.webp" alt="" width="40px" height="40px">SamSung Star</td>
+                <td>$1500</td>
+                <td>
+                    <button onclick="them(this)">Thêm</button>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="../../ASM/image/ip11_tim1.webp" alt="" width="40px" height="40px">Nokia</td>
+                <td>$1200</td>
+                <td>
+                    <button onclick="them(this)">Thêm</button>
+                </td>
+            </tr>
+            <tr>
+                <td><img src="../../ASM/image/mac16.png" alt="" width="40px" height="40px">Sony</td>
+                <td>$1700</td>
+                <td>
+                    <button onclick="them(this)">Thêm</button>
+                </td>
+            </tr>
+            </table>
+
+            <h3>Giỏ hàng của bạn</h3>
+            <div id="not-empty">
+                <table border="1" id="cart" class="tb">
+
+                </table>
+                <h3>Tổng tiền: $<span id="tong">0</span></h3>
+            </div>
+    </div>
+
+
+    <script>
+        function them(button){
+            var row = button.parentElement.parentElement.cloneNode(true);
+            row.getElementsByTagName("button")[0].innerHTML = "Xóa";
+            row.getElementsByTagName("button")[0].setAttribute("onclick","xoa(this)");
+            document.querySelector("#cart").appendChild(row);
+            tong();
+        }
+        function xoa(button){
+            var row = button.parentElement.parentElement;
+            document.querySelector("#cart").removeChild(row);
+            tong();
+        }
+        function tong(){
+            var cart = document.querySelector("#cart");
+            var row = cart.getElementsByTagName("tr");
+            var tong = 0;
+            for(let i=0; i<row.length; i++){
+                var cells = row[i].getElementsByTagName("td");
+                var price = cells[1].innerHTML.substring(1);
+                tong+= Number(price);
+            }
+            document.querySelector("#tong").innerHTML = tong;
+        }
+        function quayVe(){
+            history.back();
+        }
+    </script>
+
+</body>
+</html>

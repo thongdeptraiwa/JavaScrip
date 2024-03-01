@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab3 bai4</title>
+    <script src="bai4.js"></script>
+</head>
+<style>
+    body {
+        text-align: center;
+    }
+
+    .buttons {
+        margin-bottom: 4px;
+    }
+
+    button {
+        height: 100px;
+        width: 100px;
+        font-size: 30px;
+    }
+    h2 {
+        background-color: aqua;
+        width: 412px;
+        margin: 20px auto;
+        padding: 30px 0;
+        border-radius: 5px;
+        font-size: 30px;
+    }
+</style>
+<body>
+    <h1>Game keo bua bao</h1>
+    <h2 id="kq">Ket qua</h2>
+    <!-- cách tối ưu -->
+    <!-- <div class="buttons">
+        <button onclick="toan_hang(0)">Bao</button>
+        <button onclick="toan_hang(1)">Keo</button>
+        <button onclick="toan_hang(2)">Bua</button>
+        
+    </div>
+    <div class="buttons">
+        <button onclick="xet()">xet</button>
+    </div> --> 
+
+    <!-- cách ngu -->
+    <div class="buttons">
+        <button onclick="chon(0)">Bao</button>
+        <button onclick="chon(1)">Kéo</button>
+        <button onclick="chon(2)">Búa</button>
+        
+    </div>
+    <div class="buttons">
+        <button onclick="xet()">Xét</button>
+    </div>
+    
+</body>
+</html>

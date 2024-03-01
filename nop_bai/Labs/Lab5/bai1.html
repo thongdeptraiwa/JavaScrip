@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab5 bai1</title>
+</head>
+<style>
+    .main {
+        text-align: center;
+    }
+</style>
+<body>
+    <div id="header">
+        <button onclick="quayVe()">Quay về</button>
+    </div>
+
+    <div class="main">
+        <label id="pro" data-price="1950">iPhone 9</label>
+    <input type="number" id="qty" value="1">
+    <button onclick="display()">0k</button>
+    <hr/>
+    <h3>Name: <span id="name">?</span></h3>
+    <h3>Amount: <span id="amuont">?</span></h3>
+    <img src="" alt="" id="img" >
+    </div>
+    
+    <script>
+        function display(){
+            //name
+            var name = document.querySelector("#pro").innerHTML;
+            document.querySelector("#name").innerHTML = name;
+            //tổng giá
+            var gia = document.querySelector("#pro").getAttribute("data-price");
+            var sl = document.querySelector("#qty").value;
+            document.querySelector("#amuont").innerHTML = gia*sl;
+            document.querySelector("#img").src = '../../ASM/image/ip11_den1.webp';
+        }
+        function quayVe(){
+            history.back();
+        }
+    </script>
+</body>
+</html>

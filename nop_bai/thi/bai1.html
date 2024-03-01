@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai1 Thi</title>
+</head>
+<style>
+    .main{
+        text-align: center; 
+    }
+    #img_baner{
+        width: 100%;
+    }
+</style>
+<body onload="load_img()">
+
+    <div class="head">
+        <button onclick="quayVe()">Quay về</button>
+    </div>
+    <div class="main">
+        <div id="content">
+            <img id="img_baner" src="./img/trangWeb0.jpeg" alt="">
+           <button onclick="no()">></button>
+        </div>
+    </div>
+
+   <script>
+       //slide
+        var anh = [];
+        var index = 0;
+
+        function load_img(){
+            for(let i=0; i < 5; i++){
+                anh[i] = new Image();
+                anh[i].src = "./img/trangWeb"+i+".jpeg";
+            }
+        }
+       
+        
+        setInterval(() => {
+            no();
+        }, 1000);
+        function no(){
+            index++;
+            if(index==4){
+                index=0;
+            }
+            document.querySelector("#img_baner").src = anh[index].src;
+        }
+        function quayVe(){
+            history.back();
+        }
+   </script>
+</body>
+</html>

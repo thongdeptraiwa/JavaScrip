@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab6 bai2</title>
+</head>
+<style>
+    .main{
+        text-align: center;
+    }
+    .btn{
+        width: 80px;
+        height: 80px;
+    }
+</style>
+
+<body>
+    <div id="header">
+        <button onclick="quayVe()">Quay về</button>
+    </div>
+    <div class="main">
+        <h3>TICTACTOE GAME</h3>
+        <table align="center">
+            <tr>
+                <td><button class="btn" onclick="mark(0)"></button></td>
+                <td><button class="btn" onclick="mark(1)"></button></td>
+                <td><button class="btn" onclick="mark(2)"></button></td>
+            </tr>
+            <tr>
+                <td><button class="btn" onclick="mark(3)"></button></td>
+                <td><button class="btn" onclick="mark(4)"></button></td>
+                <td><button class="btn" onclick="mark(5)"></button></td>
+            </tr>
+            <tr>
+                <td><button class="btn" onclick="mark(6)"></button></td>
+                <td><button class="btn" onclick="mark(7)"></button></td>
+                <td><button class="btn" onclick="mark(8)"></button></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        var flag = true;
+        let count = 0;
+        function mark(index){
+            //lấy các btn (cả btn quyay về nen index+1)
+            var button = document.getElementsByClassName("btn")[index];
+            //true x - false o
+            button.innerHTML = flag ? "x" : "o";
+            button.setAttribute("disabled","true");
+            button.style.backgroundColor = flag ? "aqua" : "yellow";
+            flag = !flag;
+            //load lại game
+            count++;
+            if(count == 8){
+                alert("End Game");
+                location.reload();
+            }
+        }
+        function quayVe(){
+            history.back();
+        }
+        // function check_thang_thua(){
+        //     //check thắng thua
+        //     let o0 = document.getElementsByClassName("btn")[0].style.backgroundColor;
+        //     let o1 = document.getElementsByClassName("btn")[1].style.backgroundColor;
+        //     let o2 = document.getElementsByClassName("btn")[2].style.backgroundColor;
+        //     let o3 = document.getElementsByClassName("btn")[3].style.backgroundColor;
+        //     let o4 = document.getElementsByClassName("btn")[4].style.backgroundColor;
+        //     let o5 = document.getElementsByClassName("btn")[5].style.backgroundColor;
+        //     let o6 = document.getElementsByClassName("btn")[6].style.backgroundColor;
+        //     let o7 = document.getElementsByClassName("btn")[7].style.backgroundColor;
+        //     let o8 = document.getElementsByClassName("btn")[8].style.backgroundColor;
+        //     //Player 1 (x) win
+        //     //ngang
+        //     if(o0,o1,o2 == 'aqua'){
+        //         alert("Player 1 (x) win");
+        //         location.reload();
+        //     }
+        //     if(o3,o4,o5 == 'aqua'){
+        //         alert("Player 1 (x) win");
+        //         location.reload();
+        //     }
+        //     if(o6,o7,o8 == 'aqua'){
+        //         alert("Player 1 (x) win");
+        //         location.reload();
+        //     }
+        //     //dọc
+        //     if(o0,o3,o6 == 'aqua'){
+        //         alert("Player 1 (x) win");
+        //         location.reload();
+        //     }
+        //     if(o1,o4,o7 == 'aqua'){
+        //         alert("Player 1 (x) win");
+        //         location.reload();
+        //     }
+        //     if(o2,o5,o8 == 'aqua'){
+        //         alert("Player 1 (x) win");
+        //         location.reload();
+        //     }
+        //     //chéo
+        //     if(o0,o1,o2 == 'aqua'){
+        //         alert("Player 1 (x) win");
+        //         location.reload();
+        //     }
+        //     if(o0,o1,o2 == 'aqua'){
+        //         alert("Player 1 (x) win");
+        //         location.reload();
+        //     }
+        //     if(o0,o1,o2 == 'aqua'){
+        //         alert("Player 1 (x) win");
+        //         location.reload();
+        //     }
+    
+        // }
+    </script>
+</body>
+</html>

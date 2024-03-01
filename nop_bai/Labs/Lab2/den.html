@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>den</title>
+    <!-- <script src="den.js"></script> -->
+</head>
+<body>
+    <div>
+        <img src="../../ASM/image/airpodsmax.png" id="anh" alt="">
+    </div> 
+    <div>
+        <button id="on" onclick="on()">
+            on
+        </button>
+        <button id="off" onclick="off()">
+            off
+        </button>
+    </div>
+    <script>
+        function on(){
+         document.getElementById("anh").src = "../../ASM/image/airpods3.png";
+        }
+        function off(){
+            document.getElementById("anh").src = "../../ASM/image/airpodsmax.png";
+        }
+    </script>
+</body>
+</html>

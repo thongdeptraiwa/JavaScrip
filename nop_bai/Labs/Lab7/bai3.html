@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab7 bai3</title>
+</head>
+<style>
+    .main{
+        text-align: center;
+    }
+    img{
+        width: 50px;
+        height: 50px;
+        margin-left: 20px;
+    }
+</style>
+<body>
+    <div class="head">
+        <button onclick="quayVe()">Quay về</button>
+    </div>
+    </div>
+    <div class="main">
+        <div id="thongbao"></div>
+        <form action="anotherpage.html" method="get" onsubmit="return valForm()">
+            <input type="text" id="ho" name="ho" placeholder="Họ" />
+            <input type="text" id="ten" name="ten" placeholder="Tên" />
+            <input type="text" id="tuoi" name="tuoi" placeholder="Tuổi" />
+            <img src="../../img/anh0.png" class="img" onclick="chon_img(this)" alt="">
+            <img src="../../img/anh1.png" class="img" onclick="chon_img(this)" alt="">
+            <img src="../../img/anh2.png" class="img" onclick="chon_img(this)" alt="">
+            <button type="submit">submit</button>
+        </form>
+    </div>
+
+    <script>
+        const key = "src-lab7-b3"
+        var src_img;
+        function valForm(){
+            var p = event.target.children;
+            if(p.ho.value == ""){
+                thongbao("Vui lòng nhập họ!");
+                return false;
+            }
+            if(p.ten.value == ""){
+                thongbao("Vui lòng nhập tên!");
+                return false;
+            }
+            if(p.tuoi.value == ""){
+                thongbao("Vui lòng nhập tuổi!");
+                return false;
+            }
+            return true;
+        }
+        function chon_img(img){
+            //lấy src 
+            src_img = document.querySelector(".img").src;
+            //console.log(src_img);
+            //đổi màu lại các btn
+            document.querySelectorAll('.img').forEach(function(course){
+                course.style.border = "1px solid #4e42eb00";
+            });
+            //đổi màu viền btn đc chọn
+            img.style.border= "1px solid #4e42eb";
+            //lưu vào localStorage
+            localStorage.setItem(key,JSON.stringify(src_img));
+            let data = JSON.parse(localStorage.getItem(key));
+            //console.log(data);
+        }
+        function thongbao(m){
+            document.querySelector("#thongbao").innerHTML = m;
+        }
+        function quayVe(){
+            history.back();
+        }
+    </script>
+</body>
+</html>
